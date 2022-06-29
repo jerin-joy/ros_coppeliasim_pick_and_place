@@ -4,6 +4,9 @@ from std_msgs.msg import String
 from std_msgs.msg import Bool
 from std_msgs.msg import Float32
 
+def statusCallback(data):
+    rospy.loginfo("%s", data.data)
+
 def spawnCallback(data):
     rospy.loginfo("%s spawned ", data.data)
  
@@ -11,6 +14,8 @@ def user_interface():
     pub_start = rospy.Publisher('startSimulation', Bool, queue_size=10)
     pub_stop = rospy.Publisher('stopSimulation', Bool, queue_size=10)
     rospy.Subscriber("spawnerDetails", String, spawnCallback)
+    rospy.Subscriber("objectStatus", String, statusCallback)
+    rospy.Subscriber("objectCounter", String, statusCallback)
     rospy.init_node('vrep_interface', anonymous=True)
     rate = rospy.Rate(10) # 10hz
         
