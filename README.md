@@ -23,7 +23,7 @@ To successfully compile and run the assignment, you should have these installed:
 * Python 3.8+
 
 ## Simulation Demo
-![Simulation Demo](Peek%202022-06-30%2011-07.gif)
+![Simulation Demo](demo_video.gif)
 ## Building and Running
 
 Navigate to the ROS workspace folder and follow these steps:
