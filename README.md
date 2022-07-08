@@ -12,6 +12,8 @@ The assignment describes a Software architecture and a simulation environment to
 * /spawnerDetails - Topic that is used to obtain the details of the spawned objects.
 * /objectStatus - Topic that is used to obtain the current status of the objects in the conveyor.
 * /vrep_interface - Coppeliasim interface.
+* /pubRandom - Topic that publishes the random number generated from random_spawn_server.
+* /random_spawn_server - A service that generates a random number.
 * /startSimulation - Topic that is used to start the simulation in Coppeliasim.
 * /stopSimulation - Topic that is used to stop the simulation in Coppeliasim.
 
@@ -62,8 +64,14 @@ _NOTE:_ the directory containing all files (i.e. package.xml etc) must be called
 ```
 4. Run the node
 ```
+ rosrun sofar_assignment random_spawn_server
+```
+5. Open a new terminal and run the node
+```
  rosrun sofar_assignment vrep_interface.py
 ```
+
+
 ### Opening Coppeliasim Environment
 1. Open a new terminal and source the ROS workspace.
 2. Navigate to the Coppeliasim folder and start the coppeliasim
@@ -72,4 +80,7 @@ _NOTE:_ the directory containing all files (i.e. package.xml etc) must be called
 ```
 3. Load the [sofar_group11.ttt](sofar_group11.ttt) scene in Coppeliasim. 
 
+
+## Known issues
+During the simulation, sometimes it is noticed that the camshaft will not be picked by the robot arm properly due to its distinctive shape which freezes the simulation. Other components (oil tray and fuel pump) are spawned and picked up by the robotic arm properly. 
 
