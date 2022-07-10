@@ -1,4 +1,22 @@
 #!/usr/bin/env python
+
+## @package sofar_assignment
+# \file vrep_interface.py
+# \brief Node that acts as a user interface of the coppeliasim 
+# environment.
+# \author Jerin Joy, Niva Binesh, Yeshwanth Guru Krishnakumar
+# \date 2022-07-10
+#
+# \details
+#
+# Description:
+#
+# This node acts as a user interface to the coppeliasim 
+# environment that executes pick and place operation of 
+# parts coming in a conveyor.
+#
+##
+
 import rospy
 from std_msgs.msg import String
 from std_msgs.msg import Bool
@@ -9,11 +27,32 @@ from sofar_assignment.srv import RandomSpawn
 
 rospy.init_node('vrep_interface', anonymous=True)
 
+##
+# \brief Status Callback
+# \param data
+# 
+# Prints the object status.
+##
+
 def statusCallback(data):
     rospy.loginfo("%s", data.data)
 
+##
+# \brief Spawn Callback
+# \param data
+# 
+# Prints the status of the spawned objects
+##
+
 def spawnCallback(data):
     rospy.loginfo("%s spawned ", data.data)
+
+##
+# \brief Random Spawn Client
+# \param x, y
+# 
+# Obtains the random number from the random spawn server.
+##
 
 def random_spawn_client(x, y):
     rospy.wait_for_service('spawn_server')
@@ -24,6 +63,13 @@ def random_spawn_client(x, y):
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
 
+##
+# \brief Sends random number
+# \param None
+# 
+# Publishes the random number to /pubRandom topic
+##
+
 def sendRandomNumber():
     rate = rospy.Rate(1) # 1hz
     pub_random = rospy.Publisher('pubRandom', Int32, queue_size=10)
@@ -31,10 +77,24 @@ def sendRandomNumber():
         pub_random.publish(int(random_spawn_client(0,3)))
         rate.sleep()
 
+##
+# \brief Call subscribers
+# \param None
+# 
+# Subscribes to various topics.
+##
+
 def callSubscribers():
     rospy.Subscriber("spawnerDetails", String, spawnCallback)
     rospy.Subscriber("objectStatus", String, statusCallback)
     rospy.Subscriber("objectCounter", String, statusCallback)
+
+##
+# \brief User Interface
+# \param None
+# 
+# Acts as the user interface for the coppeliasim environment.
+##
 
 def user_interface():
     # rospy.init_node('vrep_interface', anonymous=True)
