@@ -1,11 +1,15 @@
 # SofAR Assignment
-This folder will present the material related to the assignment of the Software Architectures for Robotics course at the University of Genova. This assignment is done by Group 11 and members of the group are Jerin Joy, Niva Binesh and Yeshwanth Guru Krishnakumar. 
+This repository contains the material related to the assignment of the Software Architectures for Robotics course at the University of Genova. This assignment is done by Group 11 and members of the group are Jerin Joy, Niva Binesh and Yeshwanth Guru Krishnakumar. 
 
 ## Description of the Assignment
 The assignment describes a Software architecture and a simulation environment to enable a robot manipulator to sort objects coming on a conveyor belt depending on their color in their correct box. The simulation of the pick and place task of the robot is done in Coppeliasim and the control of the simulation is done with the help of ROS nodes. Three objects (an oil tray, fuel pump and camshaft) will be spawned in a conveyor and the robot based on RPP configuration will detect its color and pick the object and place it in its respective conveyor. 
 
 ## Node Structure
-![Node structure](rosgraph.png)
+### UML Diagram
+![Node structure](sofar_UML.png)
+
+### Sequence Diagram
+![UML Sequence](sofar_seq.png)
 
 * /sim_ros_interface - ROS interface plugin for Coppeliasim
 * /objectCounter - Topic that is used to count the number of objects spawned.
@@ -58,19 +62,10 @@ _NOTE:_ the directory containing all files (i.e. package.xml etc) must be called
 ```
  catkin_make
 ```
-3. Start the ROS master in the background.
+3. Run
 ```
- roscore &
+ roslaunch sofar_assignment pick_and_place.launch
 ```
-4. Run the node
-```
- rosrun sofar_assignment random_spawn_server
-```
-5. Open a new terminal and run the node
-```
- rosrun sofar_assignment vrep_interface.py
-```
-
 
 ### Opening Coppeliasim Environment
 1. Open a new terminal and source the ROS workspace.

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node name="random_spawn_server"  pkg="sofar_assignment" type="random_spawn_server"/>
+   
+    <node name="vrep_interface" pkg="sofar_assignment" type="vrep_interface.py" output="screen"/>
+   
+</launch>
